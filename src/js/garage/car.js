@@ -23,9 +23,9 @@ export function loadF1Car(scene, onCompleteCallback) {
   underglow.position.set(0, 0.05, 0)
   carGroup.add(underglow)
 
-  // 2. Load the original uncompressed GLB file
+  // 2. Load the original uncompressed GLB file (v2)
   const loader = new GLTFLoader()
-  loader.load('/ferrari_f1_2019.glb', (gltf) => {
+  loader.load('/ferrari_f1_20192.glb', (gltf) => {
     carGroup.remove(placeholder)
     const model = gltf.scene
 
