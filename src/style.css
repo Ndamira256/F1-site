@@ -1170,7 +1170,7 @@ body {
    ========================================================================== */
 .garage-section {
   max-width: calc(100% - 160px);
-  margin: 0 auto 120px auto;
+  margin: 140px auto 120px auto;
   position: relative;
 }
 
