@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { lenis } from './scroller.js'
 import { gsap } from 'gsap'
 
@@ -45,48 +44,8 @@ if (container) {
   const targetCameraPos = new THREE.Vector3()
   let activeStudioAngle = 'cinematic'
 
-  // Performance: Lazy load the entire WebGL scene and 3D GLB model using a debounced IntersectionObserver.
-  // This prevents CPU/main thread freezes during rapid scrolling.
-  const garageSection = document.getElementById('scuderia-garage')
-  if (garageSection) {
-    let initTimeout
-    let hasLoaded = false
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (!hasLoaded) {
-            window.addEventListener('scroll', onScrollDebounce, { passive: true })
-            resetInitTimeout()
-          }
-        } else {
-          clearTimeout(initTimeout)
-          window.removeEventListener('scroll', onScrollDebounce)
-        }
-      })
-    }, { rootMargin: '0px 0px 300px 0px' })
-
-    observer.observe(garageSection)
-
-    function resetInitTimeout() {
-      clearTimeout(initTimeout)
-      initTimeout = setTimeout(() => {
-        if (!hasLoaded) {
-          hasLoaded = true
-          window.removeEventListener('scroll', onScrollDebounce)
-          observer.disconnect()
-          console.log('Scroll settled. Initializing WebGL context & 3D model parsing...')
-          init()
-        }
-      }, 500)
-    }
-
-    function onScrollDebounce() {
-      resetInitTimeout()
-    }
-  } else {
-    init()
-  }
+  // Initialize Three.js
+  init()
 
   function init() {
     // 1. Scene setup
@@ -104,8 +63,7 @@ if (container) {
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = 1.1
-    renderer.outputColorSpace = THREE.SRGBColorSpace
+    renderer.toneMappingExposure = 1.0
     container.appendChild(renderer.domElement)
 
     // PMREM Generator for realistic room environment reflections (clearcoat paint shine!)
@@ -132,12 +90,6 @@ if (container) {
     mainLight.shadow.mapSize.height = 2048
     mainLight.shadow.bias = -0.0005
     scene.add(mainLight)
-
-    // Dedicated key light for the body diffuse highlights (PBR color definition)
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2)
-    keyLight.position.set(3, 5, 4)
-    keyLight.castShadow = true
-    scene.add(keyLight)
 
     // Glowing Neon red lights for garage look
     const redLight1 = new THREE.PointLight(0xe10600, 4, 25)
@@ -246,8 +198,7 @@ if (container) {
     placeholder.position.y = 0.3
     car.add(placeholder)
 
-    car.wheels = []
-    car.rollingPivots = []
+    car.wheels = [] // Empty array initially to avoid update loop crashes
 
     // Red underglow LED strip
     const glowGeo = new THREE.BoxGeometry(0.65, 0.02, 1.9)
@@ -267,30 +218,13 @@ if (container) {
     rainLightGlow.position.set(0, 0.25, -2.2)
     car.add(rainLightGlow)
 
-    // 2. Load the optimized Ferrari F1 GLB model with Draco compression (8.8MB)
+    // 2. Load the 27.8MB Ferrari F1 GLB model
     const loader = new GLTFLoader()
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/draco/')
-    loader.setDRACOLoader(dracoLoader)
-
-    loader.load('/ferrari_f1_2019_opt.glb', (gltf) => {
+    loader.load('/ferrari_f1_2019.glb', (gltf) => {
       // Remove placeholder mesh
       car.remove(placeholder)
 
       const model = gltf.scene
-
-      // Richer, slightly darker base red with clearcoat dielectric paint shader
-      const bodyMat = new THREE.MeshPhysicalMaterial({
-        color: 0xd60000,
-        roughness: 0.35,
-        metalness: 0.0, // Non-metallic dielectric (prevents environment reflections from crushing base color)
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.05,
-        envMap: scene.environment,
-        envMapIntensity: 1.0,
-        emissive: 0x330000,
-        emissiveIntensity: 0.15
-      })
 
       // Enhance materials and enable shadows
       model.traverse((child) => {
@@ -300,11 +234,18 @@ if (container) {
           
           if (child.material) {
             child.material.envMap = scene.environment
-            child.material.envMapIntensity = 1.0 // Dial back general reflections
-
+            child.material.envMapIntensity = 1.8
+            
+            // Highlight body panels with a glossy clearcoat lacquer
             const name = child.name.toLowerCase()
             if (name.includes('body') || name.includes('paint') || name.includes('red')) {
-              child.material = bodyMat
+              child.material.roughness = 0.1
+              child.material.metalness = 0.3
+              
+              if (child.material.isMeshPhysicalMaterial) {
+                child.material.clearcoat = 1.0
+                child.material.clearcoatRoughness = 0.03
+              }
             }
           }
         }
@@ -336,9 +277,6 @@ if (container) {
       model.position.y += size.y * scaleFactor * 0.5 - 0.04
       
       car.add(model)
-
-      // Force recursive calculation of world matrices to ensure getWorldPosition() returns correct, fully-scaled coordinates!
-      car.updateMatrixWorld(true)
 
       // 4. Dynamic Wheel Detection and Pivot Grouping
       const wheelCenters = []
@@ -378,19 +316,11 @@ if (container) {
         ]
 
         const pivots = []
-        const rollingPivots = []
         sortedCenters.forEach((center) => {
-          // Steering pivot handles steerAngle yaw (rotation.y)
-          const steerPivot = new THREE.Group()
-          steerPivot.position.copy(center)
-          car.add(steerPivot)
-          pivots.push(steerPivot)
-
-          // Rolling pivot handles wheel speed roll (rotation.x)
-          // Nesting this inside steerPivot ensures axes remain perfectly aligned during turning!
-          const rollPivot = new THREE.Group()
-          steerPivot.add(rollPivot)
-          rollingPivots.push(rollPivot)
+          const pivot = new THREE.Group()
+          pivot.position.copy(center)
+          car.add(pivot)
+          pivots.push(pivot)
         })
 
         // Find all meshes belonging to wheels
@@ -408,29 +338,28 @@ if (container) {
           }
         })
 
-        // Attach meshes to their closest nested rolling pivot
+        // Attach meshes to their closest wheel pivot
         meshesToMove.forEach((mesh) => {
           const worldPos = new THREE.Vector3()
           mesh.getWorldPosition(worldPos)
           
           let minDst = Infinity
-          let closestRollPivot = null
-          rollingPivots.forEach((rollPivot) => {
-            const dst = rollPivot.parent.position.distanceTo(worldPos)
+          let closestPivot = null
+          pivots.forEach((pivot) => {
+            const dst = pivot.position.distanceTo(worldPos)
             if (dst < minDst) {
               minDst = dst
-              closestRollPivot = rollPivot
+              closestPivot = pivot
             }
           })
           
-          if (closestRollPivot && minDst < 1.0) {
-            closestRollPivot.attach(mesh)
+          if (closestPivot && minDst < 1.0) {
+            closestPivot.attach(mesh)
           }
         })
 
         // Set wheels pivots array for physics driving loop
         car.wheels = pivots
-        car.rollingPivots = rollingPivots
       }
 
       // 5. Steering wheel rotation link
@@ -649,15 +578,18 @@ if (container) {
       car.position.copy(carPosition)
 
       // Spin tires and pivots based on velocity
-      if (car.wheels && car.wheels.length === 4 && car.rollingPivots) {
-        // Spin rolling pivots cleanly about their transverse local X axles
-        car.rollingPivots.forEach((rollPivot) => {
-          rollPivot.rotation.x += currentSpeed / 0.34
+      if (car.wheels && car.wheels.length === 4) {
+        car.wheels.forEach((wheel, index) => {
+          wheel.children.forEach((child) => {
+            // Spin around local axis
+            child.rotation.x += currentSpeed / 0.34
+          })
+          
+          // Pivot front wheels when steering (FL and FR wheels)
+          if (index < 2) {
+            wheel.rotation.y = steerAngle * 4.5
+          }
         })
-
-        // Pivot front steering wheels (FL and FR steer pivots at index 0 and 1)
-        car.wheels[0].rotation.y = steerAngle * 4.5
-        car.wheels[1].rotation.y = steerAngle * 4.5
       }
 
       // Rotate internal steering wheel mesh if exists
@@ -710,9 +642,11 @@ if (container) {
       if (telemetryRpm) telemetryRpm.textContent = currentRpm.toLocaleString()
     } else {
       // Auto-spin wheels in Studio/Kit Mode turntable
-      if (currentMode === 'studio' && car.rollingPivots && car.rollingPivots.length === 4) {
-        car.rollingPivots.forEach((rollPivot) => {
-          rollPivot.rotation.x += 0.005
+      if (currentMode === 'studio' && car.wheels && car.wheels.length === 4) {
+        car.wheels.forEach((wheel) => {
+          wheel.children.forEach((child) => {
+            child.rotation.x += 0.005
+          })
         })
       }
       controls.update()
