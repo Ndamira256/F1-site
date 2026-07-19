@@ -245,7 +245,8 @@ if (container) {
     placeholder.position.y = 0.3
     car.add(placeholder)
 
-    car.wheels = [] // Empty array initially to avoid update loop crashes
+    car.wheels = []
+    car.rollingPivots = []
 
     // Red underglow LED strip
     const glowGeo = new THREE.BoxGeometry(0.65, 0.02, 1.9)
@@ -369,11 +370,19 @@ if (container) {
         ]
 
         const pivots = []
+        const rollingPivots = []
         sortedCenters.forEach((center) => {
-          const pivot = new THREE.Group()
-          pivot.position.copy(center)
-          car.add(pivot)
-          pivots.push(pivot)
+          // Steering pivot handles steerAngle yaw (rotation.y)
+          const steerPivot = new THREE.Group()
+          steerPivot.position.copy(center)
+          car.add(steerPivot)
+          pivots.push(steerPivot)
+
+          // Rolling pivot handles wheel speed roll (rotation.x)
+          // Nesting this inside steerPivot ensures axes remain perfectly aligned during turning!
+          const rollPivot = new THREE.Group()
+          steerPivot.add(rollPivot)
+          rollingPivots.push(rollPivot)
         })
 
         // Find all meshes belonging to wheels
@@ -391,28 +400,29 @@ if (container) {
           }
         })
 
-        // Attach meshes to their closest wheel pivot
+        // Attach meshes to their closest nested rolling pivot
         meshesToMove.forEach((mesh) => {
           const worldPos = new THREE.Vector3()
           mesh.getWorldPosition(worldPos)
           
           let minDst = Infinity
-          let closestPivot = null
-          pivots.forEach((pivot) => {
-            const dst = pivot.position.distanceTo(worldPos)
+          let closestRollPivot = null
+          rollingPivots.forEach((rollPivot) => {
+            const dst = rollPivot.parent.position.distanceTo(worldPos)
             if (dst < minDst) {
               minDst = dst
-              closestPivot = pivot
+              closestRollPivot = rollPivot
             }
           })
           
-          if (closestPivot && minDst < 1.0) {
-            closestPivot.attach(mesh)
+          if (closestRollPivot && minDst < 1.0) {
+            closestRollPivot.attach(mesh)
           }
         })
 
         // Set wheels pivots array for physics driving loop
         car.wheels = pivots
+        car.rollingPivots = rollingPivots
       }
 
       // 5. Steering wheel rotation link
@@ -631,18 +641,15 @@ if (container) {
       car.position.copy(carPosition)
 
       // Spin tires and pivots based on velocity
-      if (car.wheels && car.wheels.length === 4) {
-        car.wheels.forEach((wheel, index) => {
-          wheel.children.forEach((child) => {
-            // Spin around local axis
-            child.rotation.x += currentSpeed / 0.34
-          })
-          
-          // Pivot front wheels when steering (FL and FR wheels)
-          if (index < 2) {
-            wheel.rotation.y = steerAngle * 4.5
-          }
+      if (car.wheels && car.wheels.length === 4 && car.rollingPivots) {
+        // Spin rolling pivots cleanly about their transverse local X axles
+        car.rollingPivots.forEach((rollPivot) => {
+          rollPivot.rotation.x += currentSpeed / 0.34
         })
+
+        // Pivot front steering wheels (FL and FR steer pivots at index 0 and 1)
+        car.wheels[0].rotation.y = steerAngle * 4.5
+        car.wheels[1].rotation.y = steerAngle * 4.5
       }
 
       // Rotate internal steering wheel mesh if exists
@@ -695,11 +702,9 @@ if (container) {
       if (telemetryRpm) telemetryRpm.textContent = currentRpm.toLocaleString()
     } else {
       // Auto-spin wheels in Studio/Kit Mode turntable
-      if (currentMode === 'studio' && car.wheels && car.wheels.length === 4) {
-        car.wheels.forEach((wheel) => {
-          wheel.children.forEach((child) => {
-            child.rotation.x += 0.005
-          })
+      if (currentMode === 'studio' && car.rollingPivots && car.rollingPivots.length === 4) {
+        car.rollingPivots.forEach((rollPivot) => {
+          rollPivot.rotation.x += 0.005
         })
       }
       controls.update()
