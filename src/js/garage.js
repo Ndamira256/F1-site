@@ -273,18 +273,11 @@ if (container) {
           child.receiveShadow = true
           
           if (child.material) {
-            // Fix transparency issue: make all car meshes solid and opaque by default
-            // unless they are explicitly glass or visors.
-            const name = child.name.toLowerCase()
-            if (!name.includes('glass') && !name.includes('visor')) {
-              child.material.transparent = false
-              child.material.opacity = 1.0
-            }
-
             child.material.envMap = scene.environment
             child.material.envMapIntensity = 1.8
             
             // Highlight body panels with a glossy clearcoat lacquer
+            const name = child.name.toLowerCase()
             if (name.includes('body') || name.includes('paint') || name.includes('red')) {
               child.material.roughness = 0.1
               child.material.metalness = 0.3
