@@ -44,8 +44,25 @@ if (container) {
   const targetCameraPos = new THREE.Vector3()
   let activeStudioAngle = 'cinematic'
 
-  // Initialize Three.js
-  init()
+  // Performance: Lazy load the entire WebGL scene and 3D GLB model using IntersectionObserver.
+  // This avoids CPU/Network overhead during initial page load & intro animations, ensuring 60fps smoothness.
+  const garageSection = document.getElementById('scuderia-garage')
+  if (garageSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log('Scroll reached Scuderia Garage. Lazy loading 3D simulation context...')
+          init()
+          observer.disconnect() // Disconnect observer after single initialization
+        }
+      })
+    }, { rootMargin: '0px 0px 600px 0px' }) // Starts loading when the section is 600px below the viewport
+    
+    observer.observe(garageSection)
+  } else {
+    // Fallback if section structure isn't found
+    init()
+  }
 
   function init() {
     // 1. Scene setup
