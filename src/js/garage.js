@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { lenis } from './scroller.js'
 import { gsap } from 'gsap'
 
@@ -266,9 +267,13 @@ if (container) {
     rainLightGlow.position.set(0, 0.25, -2.2)
     car.add(rainLightGlow)
 
-    // 2. Load the 27.8MB Ferrari F1 GLB model
+    // 2. Load the optimized Ferrari F1 GLB model with Draco compression (8.8MB)
     const loader = new GLTFLoader()
-    loader.load('/ferrari_f1_2019.glb', (gltf) => {
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/draco/')
+    loader.setDRACOLoader(dracoLoader)
+
+    loader.load('/ferrari_f1_2019_opt.glb', (gltf) => {
       // Remove placeholder mesh
       car.remove(placeholder)
 
@@ -331,6 +336,9 @@ if (container) {
       model.position.y += size.y * scaleFactor * 0.5 - 0.04
       
       car.add(model)
+
+      // Force recursive calculation of world matrices to ensure getWorldPosition() returns correct, fully-scaled coordinates!
+      car.updateMatrixWorld(true)
 
       // 4. Dynamic Wheel Detection and Pivot Grouping
       const wheelCenters = []
