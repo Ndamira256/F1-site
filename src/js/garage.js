@@ -103,7 +103,8 @@ if (container) {
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = 1.0
+    renderer.toneMappingExposure = 1.1
+    renderer.outputColorSpace = THREE.SRGBColorSpace
     container.appendChild(renderer.domElement)
 
     // PMREM Generator for realistic room environment reflections (clearcoat paint shine!)
@@ -130,6 +131,12 @@ if (container) {
     mainLight.shadow.mapSize.height = 2048
     mainLight.shadow.bias = -0.0005
     scene.add(mainLight)
+
+    // Dedicated key light for the body diffuse highlights (PBR color definition)
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2)
+    keyLight.position.set(3, 5, 4)
+    keyLight.castShadow = true
+    scene.add(keyLight)
 
     // Glowing Neon red lights for garage look
     const redLight1 = new THREE.PointLight(0xe10600, 4, 25)
@@ -266,6 +273,19 @@ if (container) {
 
       const model = gltf.scene
 
+      // Richer, slightly darker base red with clearcoat dielectric paint shader
+      const bodyMat = new THREE.MeshPhysicalMaterial({
+        color: 0xd60000,
+        roughness: 0.35,
+        metalness: 0.0, // Non-metallic dielectric (prevents environment reflections from crushing base color)
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.05,
+        envMap: scene.environment,
+        envMapIntensity: 1.0,
+        emissive: 0x330000,
+        emissiveIntensity: 0.15
+      })
+
       // Enhance materials and enable shadows
       model.traverse((child) => {
         if (child.isMesh) {
@@ -274,18 +294,11 @@ if (container) {
           
           if (child.material) {
             child.material.envMap = scene.environment
-            child.material.envMapIntensity = 1.8
-            
-            // Highlight body panels with a glossy clearcoat lacquer
+            child.material.envMapIntensity = 1.0 // Dial back general reflections
+
             const name = child.name.toLowerCase()
             if (name.includes('body') || name.includes('paint') || name.includes('red')) {
-              child.material.roughness = 0.1
-              child.material.metalness = 0.3
-              
-              if (child.material.isMeshPhysicalMaterial) {
-                child.material.clearcoat = 1.0
-                child.material.clearcoatRoughness = 0.03
-              }
+              child.material = bodyMat
             }
           }
         }
