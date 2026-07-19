@@ -11,8 +11,7 @@ window.addEventListener('mousemove', (e) => {
   mouseY = e.clientY
   
   if (cursorDot) {
-    cursorDot.style.left = `${mouseX}px`
-    cursorDot.style.top = `${mouseY}px`
+    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`
   }
 })
 
@@ -24,8 +23,7 @@ function animateCursor() {
   cursorY += dy * 0.15
   
   if (cursor) {
-    cursor.style.left = `${cursorX}px`
-    cursor.style.top = `${cursorY}px`
+    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`
   }
   
   requestAnimationFrame(animateCursor)
