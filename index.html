@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/src/assets/ferrari_helmet.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scuderia Ferrari - Interactive Replica</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <!-- Levitating Watermark Background -->
+    <div class="floating-bg-layer"></div>
+
+    <!-- Interactive Background Canvas (Three.js Particles) -->
+    <div id="canvas-container"></div>
+    
+    <!-- Audio element removed -->
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- Main App Container -->
+    <main id="app">
+      
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="hero">
+        <!-- Fading Background Slideshow -->
+        <div class="hero-slideshow">
+          <div class="slide active" style="background-image: url('/src/assets/hero_car_1.jpg');"></div>
+          <div class="slide" style="background-image: url('/src/assets/hero_car_3.jpg');"></div>
+        </div>
+        <div class="hero-bg-overlay"></div>
+        
+        <!-- Animated telemetry lines overlay in hero background -->
+        <div class="telemetry-grid"></div>
+
+        <div class="hero-content">
+          <div class="hero-left">
+            <span class="sub-tag">Maranello and Ferrari</span>
+            <h1 class="hero-title animate-title">WELCOME TO<br>SCUDERIA FERRARI</h1>
+            <a href="#sections" class="btn-primary pill-btn">Explore</a>
+          </div>
+          
+          <div class="hero-right">
+            <span class="date-tag">Season 2026<br>New SF-26</span>
+            <span class="channel-tag">MARANELLO<br>ORIGINAL</span>
+          </div>
+        </div>
+
+        <!-- Float Info Panel (Information Overlay) -->
+        <div class="info-card-overlay">
+          <div class="info-card-content">
+            <div class="info-text">
+              <h2>INFORMATION</h2>
+              <p>Welcome to our interactive garage. Here you will find live telemetry, wind-tunnel configurations, and driver statistics. Experience Scuderia Ferrari's relentless pursuit of speed and innovation. Join us.</p>
+            </div>
+            <div class="info-media">
+              <img src="/src/assets/ferrari_helmet.png" alt="Ferrari Helmet" class="floating-helmet">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIONS / CARDS -->
+      <section class="sections-container" id="sections">
+        <div class="sections-header">
+          <h2 class="section-title">FERRARI SECTIONS</h2>
+          <div class="header-car-render">
+            <img src="/src/assets/ferrari_sf26_side.png" alt="SF-26 Side Render">
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <!-- CARD 1: Leclerc -->
+          <div class="tilt-card" data-driver="leclerc">
+            <div class="card-inner">
+              <div class="card-image">
+                <img src="/src/assets/card_leclerc.jpg" alt="Charles Leclerc">
+              </div>
+              <div class="card-body">
+                <h3>Charles Leclerc</h3>
+                <p>Race driver #16. The Monegasque speedster leading the Scuderia.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Hamilton -->
+          <div class="tilt-card" data-driver="hamilton">
+            <div class="card-inner">
+              <div class="card-image">
+                <img src="/src/assets/card_hamilton.jpg" alt="Lewis Hamilton">
+              </div>
+              <div class="card-body">
+                <h3>Lewis Hamilton</h3>
+                <p>Race driver #44. Seven-time World Champion pushing boundaries in red.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: SF-26 Car -->
+          <div class="tilt-card" data-card="sf26">
+            <div class="card-inner">
+              <div class="card-image">
+                <img src="/src/assets/card_sf26.jpg" alt="SF-26 F1 Car">
+              </div>
+              <div class="card-body">
+                <h3>SF-26 Hybrid</h3>
+                <p>The aerodynamic and hybrid energy masterpiece designed for the 2026 regulations.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: Maranello -->
+          <div class="tilt-card" data-card="maranello">
+            <div class="card-inner">
+              <div class="card-image">
+                <img src="/src/assets/card_maranello.png" alt="Maranello Facility">
+              </div>
+              <div class="card-body">
+                <h3>Maranello Tech</h3>
+                <p>Where state-of-the-art simulation meets legendary engineering.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="center-btn-wrapper">
+          <button class="btn-dark pill-btn telemetry-toggle">Access HQ</button>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE TELEMETRY DASHBOARD (Fills in for the "hq" toggle or replaces intermediate action) -->
+      <section class="telemetry-dashboard hidden" id="telemetry-hq">
+        <div class="dashboard-container">
+          <div class="dashboard-header">
+            <h3><i class="fa-solid fa-gauge-high"></i> SF-26 LIVE TELEMETRY</h3>
+            <div class="dashboard-status">
+              <span class="status-dot pulsing"></span> LIVE FROM TRACK
+            </div>
+          </div>
+          <div class="dashboard-body">
+            <div class="telemetry-sidebar">
+              <button class="telemetry-tab active" data-tab="engine">ENGINE & ERS</button>
+              <button class="telemetry-tab" data-tab="aero">AERODYNAMICS</button>
+              <button class="telemetry-tab" data-tab="tires">TYRE TEMP</button>
+            </div>
+            <div class="telemetry-main">
+              <!-- Engine screen -->
+              <div class="telemetry-panel active" id="panel-engine">
+                <div class="panel-grid">
+                  <div class="gauge-box">
+                    <span class="gauge-label">SPEED</span>
+                    <span class="gauge-value" id="telemetry-speed">325</span>
+                    <span class="gauge-unit">KM/H</span>
+                  </div>
+                  <div class="gauge-box">
+                    <span class="gauge-label">ENGINE RPM</span>
+                    <span class="gauge-value" id="telemetry-rpm">11,800</span>
+                    <span class="gauge-unit">RPM</span>
+                  </div>
+                  <div class="gauge-box">
+                    <span class="gauge-label">GEAR</span>
+                    <span class="gauge-value" id="telemetry-gear">7</span>
+                    <span class="gauge-unit">E-DRIVE</span>
+                  </div>
+                  <div class="gauge-box">
+                    <span class="gauge-label">ERS HARVEST</span>
+                    <span class="gauge-value" id="telemetry-ers">94%</span>
+                    <span class="gauge-unit">SOC</span>
+                  </div>
+                </div>
+                <div class="graph-box">
+                  <canvas id="telemetry-graph-canvas" height="150"></canvas>
+                </div>
+              </div>
+              <!-- Aero screen -->
+              <div class="telemetry-panel" id="panel-aero">
+                <div class="aero-spec">
+                  <h4>DRS Status: <span class="drs-active">ACTIVE</span></h4>
+                  <div class="aero-meters">
+                    <div class="meter-bar">
+                      <span>Front Wing Downforce</span>
+                      <div class="bar"><div class="fill" style="width: 78%"></div></div>
+                    </div>
+                    <div class="meter-bar">
+                      <span>Rear Wing Drag</span>
+                      <div class="bar"><div class="fill" style="width: 32%"></div></div>
+                    </div>
+                    <div class="meter-bar">
+                      <span>Underbody Ground Effect</span>
+                      <div class="bar"><div class="fill" style="width: 92%"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tires screen -->
+              <div class="telemetry-panel" id="panel-tires">
+                <div class="tire-grid">
+                  <div class="tire-box FL"><span>FL: 98°C</span></div>
+                  <div class="tire-box FR"><span>FR: 101°C</span></div>
+                  <div class="tire-box RL"><span>RL: 104°C</span></div>
+                  <div class="tire-box RR"><span>RR: 105°C</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SPLIT BANNER SECTION -->
+      <section class="split-banner">
+        <div class="split-left">
+          <img src="/src/assets/ferrari_sf26_split.png" alt="SF-26 Close-up" class="split-car-img">
+        </div>
+        <div class="split-right">
+          <div class="split-content-box">
+            <span class="number-bg">#16</span>
+            <h2 class="split-title">This is Scuderia<br>Ferrari</h2>
+            <p class="split-desc">Exclusive channel of racing innovation. Passion, history, and aerodynamic perfection, built directly from Maranello for the world.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DRIVER TOGGLE COMPARE STATS SECTION -->
+      <section class="driver-compare-section">
+        <div class="compare-container">
+          <div class="compare-header">
+            <h2>DRIVER DUO</h2>
+            <div class="toggle-switch">
+              <button class="driver-btn active" data-driver-toggle="leclerc">CHARLES LECLERC</button>
+              <button class="driver-btn" data-driver-toggle="hamilton">LEWIS HAMILTON</button>
+            </div>
+          </div>
+          <div class="driver-showcase">
+            <div class="showcase-info animate-showcase">
+              <span class="driver-number" id="showcase-num">#16</span>
+              <h3 id="showcase-name">CHARLES LECLERC</h3>
+              <ul class="driver-stats-list">
+                <li><span class="stat-name">Podiums:</span> <span class="stat-val" id="stat-podiums">40+</span></li>
+                <li><span class="stat-name">Grand Prix Wins:</span> <span class="stat-val" id="stat-wins">8</span></li>
+                <li><span class="stat-name">Pole Positions:</span> <span class="stat-val" id="stat-poles">26</span></li>
+                <li><span class="stat-name">Country:</span> <span class="stat-val" id="stat-country">Monaco</span></li>
+              </ul>
+            </div>
+            <div class="showcase-image animate-showcase">
+              <img id="showcase-img" src="/src/assets/card_leclerc.jpg" alt="Driver Showcase">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MORE INFO SECTION -->
+      <section class="more-section">
+        <h2 class="section-title">MORE</h2>
+        <div class="more-grid">
+          <!-- Column 1 -->
+          <div class="more-col">
+            <div class="dark-box">
+              <div class="trophy-icon">🏆</div>
+              <div class="col-text">
+                <h3>Championship Awards</h3>
+                <p>Scuderia Ferrari holds the record for 16 Constructors' Championships and 15 Drivers' Championships. Vote for your favorite season moment.</p>
+              </div>
+            </div>
+            <button class="btn-dark pill-btn">Next</button>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="more-col">
+            <div class="f1-box">
+              <div class="f1-header">
+                <svg viewBox="0 0 100 25" class="f1-logo-svg">
+                  <path d="M0 0h84.2v25H68.8V11.2H47v13.8H31.6V11.2H15.4V25H0V0zm94.5 0c3 0 5.5 2.5 5.5 5.5s-2.5 5.5-5.5 5.5H91v8.5h9c3 0 5.5 2.5 5.5 5.5S103 25 100 25H84.2V0h10.3z" fill="#E10600"/>
+                </svg>
+              </div>
+              <div class="col-text">
+                <h3>Live Broadcasts</h3>
+                <p>Watch our live session streams direct from Maranello pit-wall. Track coordinates, pit stop analyses, and driver radios.</p>
+              </div>
+            </div>
+            <button class="btn-dark pill-btn">Join Here</button>
+          </div>
+        </div>
+
+        <!-- Bottom Float Overlay Banner -->
+        <div class="bottom-float-banner">
+          <div class="bottom-float-content">
+            <div class="bottom-image-holder">
+              <img src="/src/assets/ferrari_celebration.jpg" alt="Driver Celebration" class="floating-celebration">
+            </div>
+            <div class="bottom-text-holder">
+              <h2>SCUDERIA FERRARI</h2>
+              <span>FORMULA 1 TEAM</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3D SCUDERIA GARAGE SECTION -->
+      <section class="garage-section" id="scuderia-garage">
+        <div class="garage-header">
+          <span class="sub-tag">SIMULATION GRID</span>
+          <h2 class="section-title">SCUDERIA GARAGE 3D</h2>
+          <p class="garage-subtitle">Interact with the machine. Select a mode to inspect, configure, or drive the SF-26 F1 hybrid car.</p>
+        </div>
+
+        <div class="garage-viewport-container">
+          <!-- Loading Overlay -->
+          <div class="garage-loading" id="garage-loading">
+            <div class="loading-spinner"></div>
+            <span class="loading-text">INITIALIZING 3D ENGINE...</span>
+          </div>
+
+          <!-- Viewport Canvas -->
+          <div id="garage-viewport"></div>
+
+          <!-- HUD overlays -->
+          <div class="garage-hud">
+            <!-- Mode buttons -->
+            <div class="hud-modes">
+              <button class="hud-btn active" data-garage-mode="studio">
+                <i class="fa-solid fa-camera"></i> STUDIO
+              </button>
+              <button class="hud-btn" data-garage-mode="kit">
+                <i class="fa-solid fa-wrench"></i> KIT INSPECT
+              </button>
+              <button class="hud-btn" data-garage-mode="drive">
+                <i class="fa-solid fa-gamepad"></i> DRIVE TEST
+              </button>
+            </div>
+
+            <!-- Dynamic instruction HUD based on current active mode -->
+            <div class="hud-instructions active" id="instructions-studio">
+              <p><i class="fa-solid fa-circle-info"></i> Turntable active. The camera revolves around the chassis. Toggle angles below.</p>
+              <div class="studio-subcontrols">
+                <button class="studio-angle-btn active" data-studio-angle="cinematic">Cinematic</button>
+                <button class="studio-angle-btn" data-studio-angle="top">Top Down</button>
+                <button class="studio-angle-btn" data-studio-angle="cockpit">Cockpit</button>
+              </div>
+            </div>
+
+            <div class="hud-instructions" id="instructions-kit">
+              <p><i class="fa-solid fa-mouse"></i> Click & drag to rotate camera. Hover / click highlighted parts to inspect systems.</p>
+              <div class="kit-hotspots-menu">
+                <button class="kit-hotspot-trigger" data-kit-hotspot="aero">Aero Profile</button>
+                <button class="kit-hotspot-trigger" data-kit-hotspot="engine">Power Unit</button>
+                <button class="kit-hotspot-trigger" data-kit-hotspot="suspension">Suspension</button>
+              </div>
+            </div>
+
+            <div class="hud-instructions" id="instructions-drive">
+              <p><i class="fa-solid fa-keyboard"></i> DRIVE ENGINE ONLINE. Use <strong>WASD</strong> or <strong>Arrow Keys</strong>. Hold <strong>SPACE</strong> to Brake/Drift.</p>
+              <div class="drive-stats">
+                <span>Speed: <strong id="drive-speed">0</strong> km/h</span>
+                <span>Gear: <strong id="drive-gear">N</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-brand">
+            <span class="footer-logo">SF</span>
+            <p>Scuderia Ferrari F1 Team</p>
+          </div>
+          <div class="footer-links-grid">
+            <div class="footer-col">
+              <h4>Channel</h4>
+              <p>Exclusive Maranello Feed</p>
+            </div>
+            <div class="footer-col">
+              <h4>Team Principal</h4>
+              <p>Frédéric Vasseur</p>
+            </div>
+            <div class="footer-col">
+              <h4>Administration</h4>
+              <p>Maranello Esports</p>
+            </div>
+            <div class="footer-col">
+              <h4>Motto</h4>
+              <p>"Essere Ferrari"<br>We will always be better.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Scuderia Ferrari. Replica Site for demonstration. Created with Passion.</p>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Global Sound Toggle Control Removed -->
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1525 @@
+/* ==========================================================================
+   SCUDERIA FERRARI PREMIUM 4D DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --ferrari-red: #E10600;
+  --ferrari-red-glow: rgba(225, 6, 0, 0.4);
+  --deep-black: #0A0A0A;
+  --coal-black: #151515;
+  --charcoal: #212121;
+  --warm-cream: #E7E5DE;
+  --pure-white: #FFFFFF;
+  --gray-text: #666666;
+  --silver-gray: #CCCCCC;
+  
+  /* Typography */
+  --font-primary: 'Outfit', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  --font-digital: 'Orbitron', sans-serif;
+  
+  /* Layout Constants */
+  --border-radius-lg: 32px;
+  --border-radius-md: 16px;
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background-color: var(--warm-cream);
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--warm-cream);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+  color: var(--deep-black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none; /* Hide default cursor to use custom F1 cursor */
+}
+
+/* Levitating Watermark Background Layer */
+.floating-bg-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/src/assets/website_bg_transparent.png');
+  background-size: min(82vw, 115vh) auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1; /* on top of body dots, behind particles (2) and content (10) */
+  pointer-events: none;
+  animation: levitateBg 8s ease-in-out infinite;
+  
+  /* Max clarity and 3D depth settings */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.08) brightness(0.96) drop-shadow(0 15px 30px rgba(0,0,0,0.08));
+}
+
+@keyframes levitateBg {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* Three.js Background Canvas */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2; /* on top of floating background layer, behind content (10) */
+  pointer-events: none;
+}
+
+#app {
+  position: relative;
+  z-index: 10; /* on top of particles and backgrounds */
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--ferrari-red);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--ferrari-red);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Hover active state for custom cursor */
+.custom-cursor.active {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(225, 6, 0, 0.1);
+  border-color: var(--ferrari-red);
+}
+
+/* Buttons */
+.pill-btn {
+  display: inline-block;
+  padding: 12px 36px;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 50px;
+  border: 1px solid transparent;
+  cursor: none;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary {
+  background-color: var(--pure-white);
+  color: var(--deep-black);
+  border-color: var(--pure-white);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--pure-white);
+  border-color: var(--pure-white);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.btn-dark {
+  background-color: var(--deep-black);
+  color: var(--pure-white);
+  border-color: var(--deep-black);
+}
+
+.btn-dark:hover {
+  background-color: transparent;
+  color: var(--deep-black);
+  border-color: var(--deep-black);
+  transform: translateY(-3px);
+}
+
+/* Sound Toggle styles removed */
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 80px 180px 80px;
+  background-color: var(--deep-black); /* fallback */
+  overflow: visible;
+}
+
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-slideshow .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.0);
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 5s ease-out;
+  
+  /* Quality and contrast enhancements */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.15) brightness(0.9) saturate(1.1);
+}
+
+.hero-slideshow .slide.active {
+  opacity: 0.55;
+  transform: scale(1.06);
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: 1;
+}
+
+.telemetry-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(225, 6, 0, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(225, 6, 0, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  margin-top: auto;
+}
+
+.hero-left {
+  max-width: 600px;
+}
+
+.sub-tag {
+  display: inline-block;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--silver-gray);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--pure-white);
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.hero-right {
+  text-align: right;
+  color: var(--pure-white);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.date-tag, .channel-tag {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.channel-tag {
+  opacity: 0.8;
+  position: relative;
+}
+
+.channel-tag::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--ferrari-red);
+}
+
+/* Float Info Panel (Overlaps Hero bottom) */
+.info-card-overlay {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 160px);
+  max-width: 1200px;
+  background-color: var(--pure-white);
+  border-radius: var(--border-radius-lg);
+  padding: 40px 60px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.info-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.info-text h2 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+  color: var(--deep-black);
+}
+
+.info-text p {
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--gray-text);
+}
+
+.info-media {
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-helmet {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+  animation: floatHelmet 4s ease-in-out infinite;
+}
+
+@keyframes floatHelmet {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ==========================================================================
+   SECTIONS CONTAINER (CARDS GRID)
+   ========================================================================== */
+
+.sections-container {
+  padding: 220px 80px 100px 80px;
+  background-color: transparent;
+}
+
+.sections-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--deep-black);
+}
+
+.header-car-render {
+  max-width: 250px;
+}
+
+.header-car-render img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,0.15));
+  animation: slideCar 6s ease-in-out infinite;
+}
+
+@keyframes slideCar {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-15px); }
+  100% { transform: translateX(0); }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+/* 3D Tilt Card */
+.tilt-card {
+  perspective: 1000px;
+  cursor: none;
+}
+
+.card-inner {
+  background-color: var(--pure-white);
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.tilt-card:hover .card-inner {
+  box-shadow: 0 15px 35px rgba(225, 6, 0, 0.15);
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tilt-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateZ(30px); /* 3D layer pop */
+}
+
+.card-body h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: var(--deep-black);
+}
+
+.card-body p {
+  font-family: var(--font-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--gray-text);
+}
+
+.center-btn-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ==========================================================================
+   TELEMETRY DASHBOARD (HIDDEN BY DEFAULT)
+   ========================================================================== */
+
+.telemetry-dashboard {
+  max-width: 1200px;
+  margin: 0 auto 100px auto;
+  background-color: var(--coal-black);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.telemetry-dashboard.hidden {
+  display: none;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--deep-black);
+  padding: 20px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dashboard-header h3 {
+  color: var(--pure-white);
+  font-family: var(--font-digital);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-header h3 i {
+  color: var(--ferrari-red);
+}
+
+.dashboard-status {
+  color: #00FF66;
+  font-family: var(--font-digital);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00FF66;
+  border-radius: 50%;
+}
+
+.status-dot.pulsing {
+  animation: pulseGreen 1.5s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+}
+
+.dashboard-body {
+  display: flex;
+  min-height: 380px;
+}
+
+.telemetry-sidebar {
+  width: 220px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.telemetry-tab {
+  padding: 20px 25px;
+  background: transparent;
+  border: none;
+  color: var(--silver-gray);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  border-left: 3px solid transparent;
+  cursor: none;
+  transition: var(--transition-fast);
+}
+
+.telemetry-tab:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--pure-white);
+}
+
+.telemetry-tab.active {
+  background-color: rgba(225, 6, 0, 0.05);
+  color: var(--ferrari-red);
+  border-left-color: var(--ferrari-red);
+}
+
+.telemetry-main {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.telemetry-panel {
+  display: none;
+}
+
+.telemetry-panel.active {
+  display: block;
+}
+
+/* Engine & ERS layout */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.gauge-box {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-label {
+  font-size: 0.75rem;
+  color: var(--silver-gray);
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.gauge-value {
+  font-family: var(--font-digital);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--pure-white);
+  letter-spacing: -0.05em;
+}
+
+.gauge-unit {
+  font-size: 0.7rem;
+  color: var(--ferrari-red);
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.graph-box {
+  background-color: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--border-radius-md);
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aero Panel */
+.aero-spec h4 {
+  color: var(--pure-white);
+  font-family: var(--font-digital);
+  margin-bottom: 25px;
+}
+
+.drs-active {
+  color: #00FF66;
+}
+
+.aero-meters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.meter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meter-bar span {
+  color: var(--silver-gray);
+  font-size: 0.85rem;
+}
+
+.bar {
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar .fill {
+  height: 100%;
+  background-color: var(--ferrari-red);
+  border-radius: 6px;
+  box-shadow: 0 0 10px var(--ferrari-red);
+  transition: width 1s ease-in-out;
+}
+
+/* Tires Panel */
+.tire-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.tire-box {
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-digital);
+  font-size: 1.1rem;
+  color: #00FF66;
+  background-color: rgba(0,255,102,0.02);
+}
+
+/* ==========================================================================
+   SPLIT BANNER SECTION
+   ========================================================================== */
+
+.split-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  background-color: var(--coal-black);
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  margin: 0 auto 100px auto;
+  max-width: calc(100% - 160px);
+}
+
+.split-left {
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--deep-black);
+  position: relative;
+}
+
+.split-car-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.split-banner:hover .split-car-img {
+  transform: scale(1.05);
+}
+
+.split-right {
+  background-color: var(--coal-black);
+  padding: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.split-content-box {
+  position: relative;
+  z-index: 2;
+}
+
+.number-bg {
+  position: absolute;
+  top: -60px;
+  left: -20px;
+  font-family: var(--font-digital);
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(225, 6, 0, 0.04);
+  z-index: -1;
+  user-select: none;
+}
+
+.split-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--pure-white);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.split-desc {
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--silver-gray);
+  max-width: 440px;
+}
+
+/* ==========================================================================
+   DRIVER TOGGLE COMPARE SECTION
+   ========================================================================== */
+
+.driver-compare-section {
+  max-width: calc(100% - 160px);
+  margin: 0 auto 120px auto;
+  background-color: var(--pure-white);
+  border-radius: var(--border-radius-lg);
+  padding: 60px 80px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.compare-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 25px;
+  margin-bottom: 50px;
+}
+
+.compare-header h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--deep-black);
+}
+
+.toggle-switch {
+  display: flex;
+  background-color: var(--warm-cream);
+  padding: 5px;
+  border-radius: 50px;
+}
+
+.driver-btn {
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 0.85rem;
+  border-radius: 50px;
+  color: var(--gray-text);
+  cursor: none;
+  transition: var(--transition-fast);
+}
+
+.driver-btn.active {
+  background-color: var(--ferrari-red);
+  color: var(--pure-white);
+}
+
+.driver-showcase {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.showcase-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.driver-number {
+  font-family: var(--font-digital);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--ferrari-red);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.showcase-info h3 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
+}
+
+.driver-stats-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.driver-stats-list li {
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-name {
+  color: var(--gray-text);
+  font-weight: 500;
+}
+
+.stat-val {
+  font-weight: 800;
+  color: var(--deep-black);
+}
+
+.showcase-image {
+  width: 100%;
+  height: 380px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.showcase-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-smooth);
+}
+
+/* Animations for switches */
+.animate-showcase {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   MORE SECTION
+   ========================================================================== */
+
+.more-section {
+  padding: 0 80px 180px 80px;
+  background-color: transparent;
+  position: relative;
+}
+
+.more-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.more-col {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.dark-box, .f1-box {
+  border-radius: var(--border-radius-md);
+  padding: 40px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dark-box {
+  background-color: var(--coal-black);
+  color: var(--pure-white);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-box h3 {
+  color: var(--pure-white);
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.dark-box p {
+  color: var(--silver-gray);
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.f1-box {
+  background-color: var(--pure-white);
+  color: var(--deep-black);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+}
+
+.f1-header {
+  margin-bottom: 20px;
+}
+
+.f1-logo-svg {
+  width: 90px;
+  height: auto;
+}
+
+.f1-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: var(--deep-black);
+}
+
+.f1-box p {
+  color: var(--gray-text);
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.trophy-icon {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.col-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bottom Overlay Float Banner */
+.bottom-float-banner {
+  position: absolute;
+  bottom: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 160px);
+  max-width: 1200px;
+  background-color: var(--pure-white);
+  border-radius: var(--border-radius-lg);
+  padding: 30px 60px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.bottom-float-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.bottom-image-holder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--warm-cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-celebration {
+  width: 140px;
+  height: auto;
+  object-fit: cover;
+}
+
+.bottom-text-holder h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--deep-black);
+  margin-bottom: 5px;
+}
+
+.bottom-text-holder span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--ferrari-red);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--coal-black);
+  color: var(--pure-white);
+  padding: 160px 80px 40px 80px; /* Large top padding to make space for bottom float card */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 60px;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  font-family: var(--font-digital);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--ferrari-red);
+  letter-spacing: 0.1em;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.footer-brand p {
+  color: var(--silver-gray);
+  font-size: 0.9rem;
+}
+
+.footer-links-grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footer-col h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ferrari-red);
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+.footer-col p {
+  color: var(--silver-gray);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray-text);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   3D GARAGE VIEWPORT AND HUD
+   ========================================================================== */
+.garage-section {
+  max-width: calc(100% - 160px);
+  margin: 0 auto 120px auto;
+  position: relative;
+}
+
+.garage-header {
+  margin-bottom: 40px;
+}
+
+.garage-subtitle {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  color: var(--gray-text);
+  margin-top: 10px;
+  max-width: 600px;
+}
+
+.garage-viewport-container {
+  width: 100%;
+  height: 650px;
+  background-color: var(--coal-black);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+#garage-viewport {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+#garage-viewport:active {
+  cursor: grabbing;
+}
+
+.garage-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--deep-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 99;
+  transition: opacity 0.5s ease;
+}
+
+.garage-loading.hidden {
+  display: none;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(225, 6, 0, 0.15);
+  border-top-color: var(--ferrari-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-family: var(--font-digital);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  color: var(--pure-white);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.garage-hud {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  width: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud-modes {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.hud-btn {
+  background-color: rgba(21, 21, 21, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--silver-gray);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  cursor: none;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-btn:hover {
+  background-color: var(--pure-white);
+  color: var(--deep-black);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.hud-btn.active {
+  background-color: var(--ferrari-red);
+  color: var(--pure-white);
+  border-color: var(--ferrari-red);
+  box-shadow: 0 4px 15px var(--ferrari-red-glow);
+}
+
+.hud-instructions {
+  background-color: rgba(21, 21, 21, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--pure-white);
+  padding: 16px 25px;
+  border-radius: 16px;
+  pointer-events: auto;
+  display: none;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-width: 500px;
+}
+
+.hud-instructions.active {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hud-instructions p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--silver-gray);
+}
+
+.hud-instructions strong {
+  color: var(--ferrari-red);
+}
+
+.studio-subcontrols, .kit-hotspots-menu {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.studio-angle-btn, .kit-hotspot-trigger {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--pure-white);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  cursor: none;
+  transition: var(--transition-fast);
+}
+
+.studio-angle-btn:hover, .kit-hotspot-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.studio-angle-btn.active {
+  background-color: var(--ferrari-red);
+  border-color: var(--ferrari-red);
+  color: var(--pure-white);
+}
+
+.drive-stats {
+  display: flex;
+  gap: 25px;
+  font-family: var(--font-digital);
+  font-size: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+  color: #00FF66;
+}
+
+.drive-stats strong {
+  color: #00FF66 !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .garage-section {
+    max-width: calc(100% - 80px);
+  }
+  
+  .hero-section {
+    padding: 40px 40px 180px 40px;
+  }
+  
+  .info-card-overlay {
+    width: calc(100% - 80px);
+  }
+  
+  .sections-container {
+    padding: 220px 40px 80px 40px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .split-banner {
+    grid-template-columns: 1fr;
+    max-width: calc(100% - 80px);
+  }
+  
+  .split-left {
+    height: 350px;
+  }
+  
+  .driver-compare-section {
+    max-width: calc(100% - 80px);
+    padding: 40px;
+  }
+  
+  .driver-showcase {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .showcase-image {
+    height: 300px;
+    order: -1;
+  }
+  
+  .more-section {
+    padding: 0 40px 160px 40px;
+  }
+  
+  .more-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bottom-float-banner {
+    width: calc(100% - 80px);
+  }
+  
+  .site-footer {
+    padding: 160px 40px 40px 40px;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  
+  .hero-right {
+    text-align: left;
+  }
+  
+  .info-card-overlay {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 40px;
+    padding: 30px;
+  }
+  
+  .info-card-content {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  
+  .sections-container {
+    padding: 80px 20px 60px 20px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .split-banner {
+    max-width: 100%;
+    border-radius: 0;
+    margin-bottom: 60px;
+  }
+  
+  .driver-compare-section {
+    max-width: 100%;
+    border-radius: 0;
+    padding: 30px 20px;
+    margin-bottom: 60px;
+  }
+  
+  .more-section {
+    padding: 0 20px 140px 20px;
+  }
+  
+  .bottom-float-banner {
+    width: calc(100% - 40px);
+    padding: 20px;
+  }
+  
+  .bottom-float-content {
+    gap: 20px;
+  }
+  
+  .site-footer {
+    padding: 140px 20px 40px 20px;
+  }
+  
+  .footer-links-grid {
+    grid-template-columns: 1fr;
+  }
+}
