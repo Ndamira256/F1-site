@@ -34,17 +34,18 @@ export function loadF1Car(scene, onCompleteCallback) {
     carGroup.remove(placeholder)
     const model = gltf.scene
 
-    // Enhance materials and enable shadows
+    // Enhance materials and optimize shadow mapping footprint
     model.traverse((child) => {
       if (child.isMesh) {
-        child.castShadow = true
-        child.receiveShadow = true
+        const name = child.name.toLowerCase()
+        const isMajorPart = name.includes('body') || name.includes('paint') || name.includes('red') || name.includes('tire') || name.includes('rim') || name.includes('wing') || name.includes('floor')
+        child.castShadow = isMajorPart
+        child.receiveShadow = isMajorPart
         
         if (child.material) {
           child.material.envMap = scene.environment
           child.material.envMapIntensity = 1.8
           
-          const name = child.name.toLowerCase()
           if (name.includes('body') || name.includes('paint') || name.includes('red')) {
             child.material.roughness = 0.1
             child.material.metalness = 0.3
