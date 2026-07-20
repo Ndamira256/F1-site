@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
 let carGroup
 
@@ -23,9 +24,13 @@ export function loadF1Car(scene, onCompleteCallback) {
   underglow.position.set(0, 0.05, 0)
   carGroup.add(underglow)
 
-  // 2. Load the original uncompressed GLB file
+  // 2. Load the Draco compressed GLB file
   const loader = new GLTFLoader()
-  loader.load('/ferrari_f1_2019.glb', (gltf) => {
+  const dracoLoader = new DRACOLoader()
+  dracoLoader.setDecoderPath('/draco/')
+  loader.setDRACOLoader(dracoLoader)
+
+  loader.load('/ferrari_f1_2019_draco.glb', (gltf) => {
     carGroup.remove(placeholder)
     const model = gltf.scene
 
