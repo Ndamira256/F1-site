@@ -54,8 +54,24 @@ if (container) {
   
   const clock = new THREE.Clock()
   
+  let isGarageVisible = false
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      isGarageVisible = entry.isIntersecting
+    })
+  }, { threshold: 0.05 })
+
+  const garageSec = document.getElementById('scuderia-garage')
+  if (garageSec) {
+    visibilityObserver.observe(garageSec)
+  }
+  
   function animateParticles() {
     requestAnimationFrame(animateParticles)
+    
+    if (isGarageVisible) {
+      return
+    }
     
     const elapsedTime = clock.getElapsedTime()
     const positionArr = geometry.attributes.position.array

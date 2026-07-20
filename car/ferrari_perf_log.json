@@ -1,0 +1,1161 @@
+[
+  {
+    "timestamp": "2026-07-20T17:23:28.842Z",
+    "elapsedMs": 282,
+    "category": "GPU",
+    "activeSection": "Hero",
+    "message": "WebGL Initialized on GPU: ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "details": {
+      "vendor": "Google Inc. (Intel)",
+      "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "maxTextureSize": 16384,
+      "precision": 23
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.843Z",
+    "elapsedMs": 282,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: index-TmqjDTrt.js",
+    "details": {
+      "url": "http://localhost:4173/assets/index-TmqjDTrt.js",
+      "sizeKb": 197,
+      "durationMs": 110,
+      "initiator": "script"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.843Z",
+    "elapsedMs": 282,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: ferrari_helmet-B6xiLGoh.png",
+    "details": {
+      "url": "http://localhost:4173/assets/ferrari_helmet-B6xiLGoh.png",
+      "sizeKb": 495,
+      "durationMs": 60,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.843Z",
+    "elapsedMs": 282,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: ferrari_sf26_side-C-wEYT8O.png",
+    "details": {
+      "url": "http://localhost:4173/assets/ferrari_sf26_side-C-wEYT8O.png",
+      "sizeKb": 455,
+      "durationMs": 81,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.843Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: card_leclerc-Bc_8bYYy.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/card_leclerc-Bc_8bYYy.jpg",
+      "sizeKb": 97,
+      "durationMs": 100,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.843Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: card_hamilton-Bti1oUY5.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/card_hamilton-Bti1oUY5.jpg",
+      "sizeKb": 211,
+      "durationMs": 114,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.843Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: card_sf26-DNYr5cXw.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/card_sf26-DNYr5cXw.jpg",
+      "sizeKb": 234,
+      "durationMs": 116,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.844Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: card_maranello-BGvv-2ps.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/card_maranello-BGvv-2ps.jpg",
+      "sizeKb": 219,
+      "durationMs": 119,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.844Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: ferrari_sf26_split-BNe8deXB.png",
+    "details": {
+      "url": "http://localhost:4173/assets/ferrari_sf26_split-BNe8deXB.png",
+      "sizeKb": 529,
+      "durationMs": 147,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.844Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: ferrari_celebration-BZQLsKQY.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/ferrari_celebration-BZQLsKQY.jpg",
+      "sizeKb": 280,
+      "durationMs": 139,
+      "initiator": "img"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.844Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: website_bg_transparent-C1PGUKKQ.png",
+    "details": {
+      "url": "http://localhost:4173/assets/website_bg_transparent-C1PGUKKQ.png",
+      "sizeKb": 114,
+      "durationMs": 57,
+      "initiator": "css"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.844Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: hero_car_1-Cxj0icoO.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/hero_car_1-Cxj0icoO.jpg",
+      "sizeKb": 451,
+      "durationMs": 70,
+      "initiator": "css"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.844Z",
+    "elapsedMs": 283,
+    "category": "Network",
+    "activeSection": "Hero",
+    "message": "Loaded asset: hero_car_3-BW21dZq4.jpg",
+    "details": {
+      "url": "http://localhost:4173/assets/hero_car_3-BW21dZq4.jpg",
+      "sizeKb": 354,
+      "durationMs": 69,
+      "initiator": "css"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.970Z",
+    "elapsedMs": 409,
+    "category": "ThreadBlock",
+    "activeSection": "Hero",
+    "message": "Main thread blocked for 135ms",
+    "details": {
+      "durationMs": 135,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:28.970Z",
+    "elapsedMs": 409,
+    "category": "SectionChange",
+    "activeSection": "hero",
+    "message": "User scrolled to section: #hero",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-07-20T17:23:31.644Z",
+    "elapsedMs": 3083,
+    "category": "SectionChange",
+    "activeSection": "sections",
+    "message": "User scrolled to section: #sections",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-07-20T17:23:33.204Z",
+    "elapsedMs": 4643,
+    "category": "ThreadBlock",
+    "activeSection": "sections",
+    "message": "Main thread blocked for 109ms",
+    "details": {
+      "durationMs": 109,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:33.263Z",
+    "elapsedMs": 4703,
+    "category": "Network",
+    "activeSection": "sections",
+    "message": "Loaded asset: ferrari_f1_2019_draco.glb",
+    "details": {
+      "url": "http://localhost:4173/ferrari_f1_2019_draco.glb",
+      "sizeKb": 0,
+      "durationMs": 59,
+      "initiator": "fetch"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:33.740Z",
+    "elapsedMs": 5180,
+    "category": "SectionChange",
+    "activeSection": "scuderia-garage",
+    "message": "User scrolled to section: #scuderia-garage",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-07-20T17:23:35.051Z",
+    "elapsedMs": 6490,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 1227ms",
+    "details": {
+      "durationMs": 1227,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:35.244Z",
+    "elapsedMs": 6683,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 23 FPS",
+    "details": {
+      "fps": 23
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:36.028Z",
+    "elapsedMs": 7467,
+    "category": "SectionChange",
+    "activeSection": "scuderia-garage",
+    "message": "User scrolled to section: #scuderia-garage",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-07-20T17:23:36.463Z",
+    "elapsedMs": 7902,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 193ms",
+    "details": {
+      "durationMs": 193,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:36.712Z",
+    "elapsedMs": 8152,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 219ms",
+    "details": {
+      "durationMs": 219,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:36.915Z",
+    "elapsedMs": 8354,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 199ms",
+    "details": {
+      "durationMs": 199,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:37.112Z",
+    "elapsedMs": 8552,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 185ms",
+    "details": {
+      "durationMs": 185,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:37.327Z",
+    "elapsedMs": 8767,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 188ms",
+    "details": {
+      "durationMs": 188,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:37.565Z",
+    "elapsedMs": 9004,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 197ms",
+    "details": {
+      "durationMs": 197,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:37.743Z",
+    "elapsedMs": 9183,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 162ms",
+    "details": {
+      "durationMs": 162,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:38.073Z",
+    "elapsedMs": 9512,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 205ms",
+    "details": {
+      "durationMs": 205,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:38.073Z",
+    "elapsedMs": 9512,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 71ms",
+    "details": {
+      "durationMs": 71,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:38.251Z",
+    "elapsedMs": 9691,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 22 FPS",
+    "details": {
+      "fps": 22
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:39.358Z",
+    "elapsedMs": 10798,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 90ms",
+    "details": {
+      "durationMs": 90,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:39.466Z",
+    "elapsedMs": 10905,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 92ms",
+    "details": {
+      "durationMs": 92,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:39.702Z",
+    "elapsedMs": 11142,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 92ms",
+    "details": {
+      "durationMs": 92,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:39.703Z",
+    "elapsedMs": 11143,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 131ms",
+    "details": {
+      "durationMs": 131,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:39.845Z",
+    "elapsedMs": 11284,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 139ms",
+    "details": {
+      "durationMs": 139,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.049Z",
+    "elapsedMs": 11489,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 171ms",
+    "details": {
+      "durationMs": 171,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.243Z",
+    "elapsedMs": 11682,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 181ms",
+    "details": {
+      "durationMs": 181,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.374Z",
+    "elapsedMs": 11814,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 112ms",
+    "details": {
+      "durationMs": 112,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.497Z",
+    "elapsedMs": 11936,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 110ms",
+    "details": {
+      "durationMs": 110,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.603Z",
+    "elapsedMs": 12043,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 97ms",
+    "details": {
+      "durationMs": 97,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.818Z",
+    "elapsedMs": 12257,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 98ms",
+    "details": {
+      "durationMs": 98,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.819Z",
+    "elapsedMs": 12258,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 114ms",
+    "details": {
+      "durationMs": 114,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:40.951Z",
+    "elapsedMs": 12390,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 89ms",
+    "details": {
+      "durationMs": 89,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:41.081Z",
+    "elapsedMs": 12520,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 96ms",
+    "details": {
+      "durationMs": 96,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:41.265Z",
+    "elapsedMs": 12704,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 23 FPS",
+    "details": {
+      "fps": 23
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:45.545Z",
+    "elapsedMs": 16984,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 153ms",
+    "details": {
+      "durationMs": 153,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:45.746Z",
+    "elapsedMs": 17186,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 171ms",
+    "details": {
+      "durationMs": 171,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:45.925Z",
+    "elapsedMs": 17364,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 162ms",
+    "details": {
+      "durationMs": 162,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:45.940Z",
+    "elapsedMs": 17379,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 39 FPS",
+    "details": {
+      "fps": 39
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:46.081Z",
+    "elapsedMs": 17521,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 142ms",
+    "details": {
+      "durationMs": 142,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:52.107Z",
+    "elapsedMs": 23546,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 184ms",
+    "details": {
+      "durationMs": 184,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:52.107Z",
+    "elapsedMs": 23547,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 109ms",
+    "details": {
+      "durationMs": 109,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:53.177Z",
+    "elapsedMs": 24617,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 56ms",
+    "details": {
+      "durationMs": 56,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:53.385Z",
+    "elapsedMs": 24824,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 82ms",
+    "details": {
+      "durationMs": 82,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:53.566Z",
+    "elapsedMs": 25005,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 168ms",
+    "details": {
+      "durationMs": 168,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:53.743Z",
+    "elapsedMs": 25182,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 161ms",
+    "details": {
+      "durationMs": 161,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:53.749Z",
+    "elapsedMs": 25189,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 39 FPS",
+    "details": {
+      "fps": 39
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:53.884Z",
+    "elapsedMs": 25323,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 135ms",
+    "details": {
+      "durationMs": 135,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:23:54.047Z",
+    "elapsedMs": 25487,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 115ms",
+    "details": {
+      "durationMs": 115,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:00.539Z",
+    "elapsedMs": 31978,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 139ms",
+    "details": {
+      "durationMs": 139,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:00.708Z",
+    "elapsedMs": 32147,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 156ms",
+    "details": {
+      "durationMs": 156,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.036Z",
+    "elapsedMs": 32475,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 162ms",
+    "details": {
+      "durationMs": 162,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.036Z",
+    "elapsedMs": 32476,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 150ms",
+    "details": {
+      "durationMs": 150,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.047Z",
+    "elapsedMs": 32487,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 38 FPS",
+    "details": {
+      "fps": 38
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.180Z",
+    "elapsedMs": 32619,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 135ms",
+    "details": {
+      "durationMs": 135,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.290Z",
+    "elapsedMs": 32729,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 89ms",
+    "details": {
+      "durationMs": 89,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.482Z",
+    "elapsedMs": 32921,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 175ms",
+    "details": {
+      "durationMs": 175,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.670Z",
+    "elapsedMs": 33109,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 166ms",
+    "details": {
+      "durationMs": 166,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.853Z",
+    "elapsedMs": 33293,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 144ms",
+    "details": {
+      "durationMs": 144,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:01.966Z",
+    "elapsedMs": 33406,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 104ms",
+    "details": {
+      "durationMs": 104,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:02.146Z",
+    "elapsedMs": 33585,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 67ms",
+    "details": {
+      "durationMs": 67,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:04.756Z",
+    "elapsedMs": 36196,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 80ms",
+    "details": {
+      "durationMs": 80,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:04.865Z",
+    "elapsedMs": 36304,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 74ms",
+    "details": {
+      "durationMs": 74,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.006Z",
+    "elapsedMs": 36446,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 118ms",
+    "details": {
+      "durationMs": 118,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.145Z",
+    "elapsedMs": 36584,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 123ms",
+    "details": {
+      "durationMs": 123,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.254Z",
+    "elapsedMs": 36693,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 88ms",
+    "details": {
+      "durationMs": 88,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.280Z",
+    "elapsedMs": 36720,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 39 FPS",
+    "details": {
+      "fps": 39
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.377Z",
+    "elapsedMs": 36817,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 97ms",
+    "details": {
+      "durationMs": 97,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.556Z",
+    "elapsedMs": 36995,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 153ms",
+    "details": {
+      "durationMs": 153,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.772Z",
+    "elapsedMs": 37212,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 153ms",
+    "details": {
+      "durationMs": 153,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.894Z",
+    "elapsedMs": 37333,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 117ms",
+    "details": {
+      "durationMs": 117,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:05.998Z",
+    "elapsedMs": 37438,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 95ms",
+    "details": {
+      "durationMs": 95,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:06.144Z",
+    "elapsedMs": 37583,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 141ms",
+    "details": {
+      "durationMs": 141,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:09.813Z",
+    "elapsedMs": 41253,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 210ms",
+    "details": {
+      "durationMs": 210,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:09.957Z",
+    "elapsedMs": 41396,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 88ms",
+    "details": {
+      "durationMs": 88,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:10.964Z",
+    "elapsedMs": 42403,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 130ms",
+    "details": {
+      "durationMs": 130,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:11.008Z",
+    "elapsedMs": 42448,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 39 FPS",
+    "details": {
+      "fps": 39
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:11.147Z",
+    "elapsedMs": 42587,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 148ms",
+    "details": {
+      "durationMs": 148,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:11.331Z",
+    "elapsedMs": 42771,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 165ms",
+    "details": {
+      "durationMs": 165,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:11.623Z",
+    "elapsedMs": 43062,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 184ms",
+    "details": {
+      "durationMs": 184,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:11.789Z",
+    "elapsedMs": 43229,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 144ms",
+    "details": {
+      "durationMs": 144,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:11.997Z",
+    "elapsedMs": 43436,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 149ms",
+    "details": {
+      "durationMs": 149,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:12.165Z",
+    "elapsedMs": 43605,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 87ms",
+    "details": {
+      "durationMs": 87,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:13.820Z",
+    "elapsedMs": 45259,
+    "category": "UI_Interaction",
+    "activeSection": "scuderia-garage",
+    "message": "Clicked: Analytics",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-07-20T17:24:13.947Z",
+    "elapsedMs": 45386,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 182ms",
+    "details": {
+      "durationMs": 182,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:13.948Z",
+    "elapsedMs": 45387,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 103ms",
+    "details": {
+      "durationMs": 103,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:14.155Z",
+    "elapsedMs": 45595,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 151ms",
+    "details": {
+      "durationMs": 151,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:15.130Z",
+    "elapsedMs": 46570,
+    "category": "FPS_Drop",
+    "activeSection": "scuderia-garage",
+    "message": "Framerate dropped to 39 FPS",
+    "details": {
+      "fps": 39
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:15.208Z",
+    "elapsedMs": 46647,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 78ms",
+    "details": {
+      "durationMs": 78,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:15.379Z",
+    "elapsedMs": 46819,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 104ms",
+    "details": {
+      "durationMs": 104,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:15.526Z",
+    "elapsedMs": 46965,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 98ms",
+    "details": {
+      "durationMs": 98,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:15.658Z",
+    "elapsedMs": 47097,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 103ms",
+    "details": {
+      "durationMs": 103,
+      "name": "self"
+    }
+  },
+  {
+    "timestamp": "2026-07-20T17:24:15.788Z",
+    "elapsedMs": 47227,
+    "category": "ThreadBlock",
+    "activeSection": "scuderia-garage",
+    "message": "Main thread blocked for 80ms",
+    "details": {
+      "durationMs": 80,
+      "name": "self"
+    }
+  }
+]
