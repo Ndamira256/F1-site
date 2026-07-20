@@ -1,4 +1,5 @@
 import './style.css'
+import './js/logger.js'
 import './js/scroller.js'
 import './js/cursor.js'
 import './js/particles.js'
