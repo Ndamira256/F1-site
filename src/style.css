@@ -148,12 +148,14 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary:hover {
-  background-color: transparent;
-  color: var(--pure-white);
-  border-color: var(--pure-white);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background-color: transparent;
+    color: var(--pure-white);
+    border-color: var(--pure-white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+  }
 }
 
 .btn-dark {
@@ -162,11 +164,13 @@ body {
   border-color: var(--deep-black);
 }
 
-.btn-dark:hover {
-  background-color: transparent;
-  color: var(--deep-black);
-  border-color: var(--deep-black);
-  transform: translateY(-3px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-dark:hover {
+    background-color: transparent;
+    color: var(--deep-black);
+    border-color: var(--deep-black);
+    transform: translateY(-3px);
+  }
 }
 
 /* Sound Toggle styles removed */
@@ -271,11 +275,11 @@ body {
 .hero-title {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 0.95;
   color: var(--pure-white);
   margin-bottom: 25px;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 .hero-right {
@@ -424,6 +428,21 @@ body {
 .tilt-card {
   perspective: 1000px;
   cursor: none;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFadeIn 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.tilt-card:nth-child(1) { animation-delay: 50ms; }
+.tilt-card:nth-child(2) { animation-delay: 120ms; }
+.tilt-card:nth-child(3) { animation-delay: 190ms; }
+.tilt-card:nth-child(4) { animation-delay: 260ms; }
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card-inner {
@@ -435,12 +454,15 @@ body {
   flex-direction: column;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  transition: transform 0.1s ease, box-shadow 0.3s ease;
+  transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
   transform-style: preserve-3d;
 }
 
-.tilt-card:hover .card-inner {
-  box-shadow: 0 15px 35px rgba(225, 6, 0, 0.15);
+@media (hover: hover) and (pointer: fine) {
+  .tilt-card:hover .card-inner {
+    box-shadow: 0 15px 35px rgba(225, 6, 0, 0.15);
+    border-color: rgba(225, 6, 0, 0.3);
+  }
 }
 
 .card-image {
@@ -457,8 +479,10 @@ body {
   transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.tilt-card:hover .card-image img {
-  transform: scale(1.1);
+@media (hover: hover) and (pointer: fine) {
+  .tilt-card:hover .card-image img {
+    transform: scale(1.05);
+  }
 }
 
 .card-body {
@@ -593,9 +617,11 @@ body {
   transition: var(--transition-fast);
 }
 
-.telemetry-tab:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-  color: var(--pure-white);
+@media (hover: hover) and (pointer: fine) {
+  .telemetry-tab:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: var(--pure-white);
+  }
 }
 
 .telemetry-tab.active {
@@ -765,8 +791,10 @@ body {
   transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.split-banner:hover .split-car-img {
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .split-banner:hover .split-car-img {
+    transform: scale(1.03);
+  }
 }
 
 .split-right {
@@ -1288,11 +1316,13 @@ body {
   gap: 8px;
 }
 
-.hud-btn:hover {
-  background-color: var(--pure-white);
-  color: var(--deep-black);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+@media (hover: hover) and (pointer: fine) {
+  .hud-btn:hover {
+    background-color: var(--pure-white);
+    color: var(--deep-black);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  }
 }
 
 .hud-btn.active {
@@ -1355,9 +1385,11 @@ body {
   transition: var(--transition-fast);
 }
 
-.studio-angle-btn:hover, .kit-hotspot-trigger:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .studio-angle-btn:hover, .kit-hotspot-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
 }
 
 .studio-angle-btn.active {
@@ -1522,4 +1554,32 @@ body {
   .footer-links-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ==========================================================================
+   UI POLISH & PHYSICAL INTERACTION ENHANCEMENTS (Apple & Emil Design Principles)
+   ========================================================================== */
+
+/* Active press feedback on all interactive elements */
+button:active,
+.btn-primary:active,
+.btn-dark:active,
+.hud-btn:active,
+.studio-angle-btn:active,
+.kit-hotspot-trigger:active,
+.telemetry-tab:active,
+.telemetry-toggle:active,
+.driver-btn:active,
+#perf-logger-toggle:active {
+  transform: scale(0.97) !important;
+  transition: transform 100ms cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* Bright catches and subtle shadows for realistic glassmorphic layers */
+.dashboard-container, .hud-instructions, #perf-logger-panel {
+  border-top: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.05) !important;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
 }
