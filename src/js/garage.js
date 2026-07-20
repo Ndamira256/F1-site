@@ -108,5 +108,22 @@ if (container) {
     renderer.render(scene, camera)
   }
 
-  init()
+  // Lazy-load the 3D engine only when the user scrolls near the section (400px threshold)
+  let initialized = false
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !initialized) {
+        initialized = true
+        init()
+        observer.disconnect()
+      }
+    })
+  }, { rootMargin: '400px' })
+
+  const section = document.getElementById('scuderia-garage')
+  if (section) {
+    observer.observe(section)
+  } else {
+    init()
+  }
 }
