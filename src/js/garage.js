@@ -108,14 +108,27 @@ if (container) {
     renderer.render(scene, camera)
   }
 
-  // Lazy-load the 3D engine only when the user scrolls near the section (400px threshold)
+  // Lazy-load and debounce the 3D engine initialization so it only loads when the user stops scrolling for 500ms
   let initialized = false
+  let debounceTimeout = null
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !initialized) {
-        initialized = true
-        init()
-        observer.disconnect()
+        if (debounceTimeout) clearTimeout(debounceTimeout)
+
+        debounceTimeout = setTimeout(() => {
+          if (!initialized) {
+            initialized = true
+            init()
+            observer.disconnect()
+          }
+        }, 500)
+      } else {
+        if (debounceTimeout) {
+          clearTimeout(debounceTimeout)
+          debounceTimeout = null
+        }
       }
     })
   }, { rootMargin: '400px' })
